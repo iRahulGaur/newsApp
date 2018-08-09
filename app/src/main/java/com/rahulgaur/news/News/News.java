@@ -2,6 +2,8 @@ package com.rahulgaur.news.News;
 
 import java.util.ArrayList;
 
+//this is the main JSON Object, which includes JSON Array Article.
+
 public class News {
     private String status;
     private int totalResults;

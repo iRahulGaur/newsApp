@@ -1,5 +1,7 @@
 package com.rahulgaur.news.News;
 
+//this is a part of Article Array
+
 public class source {
     private String id;
     private String name;

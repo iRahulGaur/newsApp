@@ -30,20 +30,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv = findViewById(R.id.news_listView);
+
+        //for "GET" method of JSON
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        //Needed for "GET"
         API api = retrofit.create(API.class);
 
+        //Getting All API Data in callNews
         Call<News> callNews = api.getGoogleNews();
 
         try {
+            //predefined methods of CALL
             callNews.enqueue(new Callback<News>() {
                 @Override
                 public void onResponse(Call<News> call, Response<News> response) {
+                    //getting the Data in NEWS
                     News news = response.body();
+                    //getting the from NEWS and Passing it in ARTICLES
                     ArrayList<articles> articles = news.getArticles();
                     for (articles a: articles){
                         Log.e(TAG, "onResponse: news status "+a.getTitle());

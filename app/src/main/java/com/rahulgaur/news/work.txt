@@ -1,3 +1,28 @@
 API for news
+
+First Visit newsapi.org to see the JSON Structure
+
 Google - https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=467a297303ac4ba6ad3b0bbbc54d102d
 TOI - https://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=467a297303ac4ba6ad3b0bbbc54d102d
+
+JSON Structure of News from API
+{
+String status
+int result
+Array(Objects) articles[
+	Object{
+		Object source{
+			String id
+			String name
+			}
+		String author
+		String title
+		String description
+		String url
+		String imageUrl
+		Date publishedAt
+		}
+	]
+}
+
+Object = JSON Object

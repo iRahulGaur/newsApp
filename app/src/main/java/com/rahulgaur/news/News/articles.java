@@ -2,6 +2,8 @@ package com.rahulgaur.news.News;
 
 import java.util.Date;
 
+//this is the Array in Google Top News, here the news is actually stored in form of Array.
+
 public class articles {
     private source source;
     private String author;
@@ -12,7 +14,6 @@ public class articles {
     private Date publishedAt;
 
     public articles() {
-
     }
 
     public articles(com.rahulgaur.news.News.source source, String author, String title, String description, String url, String urlToImage, Date publishedAt) {
