@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         lv = findViewById(R.id.news_listView);
 
         //for "GET" method of JSON
+        //Also converts the JSON object into Simple Java Object
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
