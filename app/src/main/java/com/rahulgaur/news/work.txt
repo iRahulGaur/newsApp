@@ -1,0 +1,3 @@
+API for news
+Google - https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=467a297303ac4ba6ad3b0bbbc54d102d
+TOI - https://newsapi.org/v2/top-headlines?sources=the-times-of-india&apiKey=467a297303ac4ba6ad3b0bbbc54d102d
