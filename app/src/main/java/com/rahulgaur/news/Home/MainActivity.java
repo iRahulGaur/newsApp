@@ -2,6 +2,8 @@ package com.rahulgaur.news.Home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,13 +25,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private ListView lv;
+    private ArrayList<articles> articles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lv = findViewById(R.id.news_listView);
+        RecyclerView recyclerView = findViewById(R.id.news_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        articles = new ArrayList<>();
+
+        Adapter adapter = new Adapter(articles);
+
+        recyclerView.setAdapter(adapter);
 
         //for "GET" method of JSON
         //Also converts the JSON object into Simple Java Object
@@ -52,17 +60,17 @@ public class MainActivity extends AppCompatActivity {
                     //getting the Data in NEWS
                     News news = response.body();
                     //getting the from NEWS and Passing it in ARTICLES
-                    ArrayList<articles> articles = news.getArticles();
-                    for (articles a: articles){
-                        Log.e(TAG, "onResponse: news status "+a.getTitle());
-                        Log.e(TAG, "onResponse: news articles number "+a.getDescription());
+                    articles = news.getArticles();
+                    for (articles a : articles) {
+                        Log.e(TAG, "onResponse: news status " + a.getTitle());
+                        Log.e(TAG, "onResponse: news articles number " + a.getDescription());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<News> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, "Failed "+t.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onFailure: error "+t.getMessage()+" "+t.getLocalizedMessage()+" "+t.getCause() );
+                    Toast.makeText(MainActivity.this, "Failed " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onFailure: error " + t.getMessage() + " " + t.getLocalizedMessage() + " " + t.getCause());
                 }
             });
         } catch (Exception e) {
