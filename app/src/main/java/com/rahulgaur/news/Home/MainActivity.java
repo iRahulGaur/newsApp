@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private ArrayList<articles> articles;
+    private ArrayList<articles> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.news_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         articles = new ArrayList<>();
+        list = new ArrayList<>();
 
-        Adapter adapter = new Adapter(articles);
+        final Adapter adapter = new Adapter(list);
 
         recyclerView.setAdapter(adapter);
 
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                     //getting the from NEWS and Passing it in ARTICLES
                     articles = news.getArticles();
                     for (articles a : articles) {
+                        list.add(a);
+                        adapter.notifyDataSetChanged();
                         Log.e(TAG, "onResponse: news status " + a.getTitle());
                         Log.e(TAG, "onResponse: news articles number " + a.getDescription());
                     }
